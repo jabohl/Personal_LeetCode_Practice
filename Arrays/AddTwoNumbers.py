@@ -4,31 +4,31 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def addTwoNumbers(self, test_list_initial: Optional[ListNode], test_list_final: Optional[ListNode]) -> Optional[ListNode]:
         
         index=0
         
         result=0
         
-        while l1:
+        while test_list_initial:
             
-            result += ( (10**index) * l1.val )
+            result += ( (10**index) * test_list_initial.val )
             
             index += 1
             
-            l1 = l1.next
+            test_list_initial = test_list_initial.next
         
         index=0
         
 
         
-        while l2:
+        while test_list_final:
         
-            result += ( (10**index) * l2.val)
+            result += ( (10**index) * test_list_final.val)
             
             index += 1
             
-            l2 = l2.next
+            test_list_final = test_list_final.next
         
         
         val = result
