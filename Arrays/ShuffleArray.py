@@ -1,29 +1,57 @@
 import random
+
 class Solution:
-
-    def __init__(self, nums: List[int]):
+    """
+    Provides shuffle and reset functionality for an array.
+    Allows shuffling the array and resetting it to the original order.
     
-        self.myList=[]
-        self.resList=[]
+    Time Complexity: O(n) for shuffle, O(n) for reset
+    Space Complexity: O(n) to store the original array
+    """
+    
+    def __init__(self, nums: List[int]):
+        """
+        Initializes the shuffler with the original array.
         
-        for val in nums:
-            
-            self.resList.append(val)
-            self.myList.append(val)
-
+        Args:
+            nums: The original array to shuffle
+        """
+        # Store a copy of the original array for reset functionality
+        self.originalArray = []
+        # Working copy that will be shuffled
+        self.currentArray = []
+        
+        # Copy all elements from nums to both storage arrays
+        for element in nums:
+            self.currentArray.append(element)
+            self.originalArray.append(element)
+    
     def reset(self) -> List[int]:
+        """
+        Resets the array to its original order.
         
-        self.myList=self.resList
+        Returns:
+            The original unshuffled array
+        """
+        # Restore the current array to the original state
+        self.currentArray = self.originalArray[:]
         
-        return self.myList
-
+        return self.currentArray
+    
     def shuffle(self) -> List[int]:
-        shuffleArray = []
+        """
+        Returns a randomly shuffled version of the array.
         
-        for val in self.myList:
-            shuffleArray.append(val)
+        Returns:
+            A shuffled copy of the array
+        """
+        # Create a copy of the current array to shuffle
+        shuffledArray = []
         
-        random.shuffle(shuffleArray)
+        for element in self.currentArray:
+            shuffledArray.append(element)
         
-        return shuffleArray
-
+        # Shuffle the copy using Fisher-Yates algorithm (via random.shuffle)
+        random.shuffle(shuffledArray)
+        
+        return shuffledArray

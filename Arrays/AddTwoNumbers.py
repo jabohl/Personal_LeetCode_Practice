@@ -3,44 +3,66 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 class Solution:
-    def addTwoNumbers(self, test_list_initial: Optional[ListNode], test_list_final: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Adds two numbers represented as linked lists in reverse order.
+    
+    Example:
+        342 + 465 = 807
+        Represented as: 2->4->3 + 5->6->4 = 7->0->8
+    
+    Time Complexity: O(max(len(firstNumberList), len(secondNumberList)))
+    Space Complexity: O(max(len(firstNumberList), len(secondNumberList)))
+    """
+    
+    def addTwoNumbers(self, firstNumberList: Optional[ListNode], secondNumberList: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        Adds two numbers represented as linked lists by converting to integers,
+        summing them, and converting back to a linked list.
         
-        index=0
+        Args:
+            firstNumberList: First linked list representing a number in reverse
+            secondNumberList: Second linked list representing a number in reverse
         
-        result=0
+        Returns:
+            LinkedList representing the sum in reverse order
+        """
         
-        while test_list_initial:
-            
-            result += ( (10**index) * test_list_initial.val )
-            
-            index += 1
-            
-            test_list_initial = test_list_initial.next
+        # Convert first linked list to integer
+        powerOfTen = 0
+        firstNumber = 0
         
-        index=0
+        currentNode = firstNumberList
+        while currentNode:
+            # Each digit is multiplied by 10^powerOfTen based on its position
+            firstNumber += ((10 ** powerOfTen) * currentNode.val)
+            powerOfTen += 1
+            currentNode = currentNode.next
         
-
+        # Convert second linked list to integer
+        powerOfTen = 0
+        secondNumber = 0
         
-        while test_list_final:
+        currentNode = secondNumberList
+        while currentNode:
+            secondNumber += ((10 ** powerOfTen) * currentNode.val)
+            powerOfTen += 1
+            currentNode = currentNode.next
         
-            result += ( (10**index) * test_list_final.val)
-            
-            index += 1
-            
-            test_list_final = test_list_final.next
+        # Sum the two numbers
+        totalSum = firstNumber + secondNumber
         
+        # Convert sum back to linked list (in reverse order)
+        sumStr = str(totalSum)
         
-        val = result
+        # Create the head node with the last digit (ones place)
+        resultHead = ListNode(int(sumStr[len(sumStr) - 1]))
+        currentNode = resultHead
         
-        node = ListNode(int(str(val)[len(str(val))-1]))
+        # Build the rest of the linked list
+        for digitIndex in range(len(sumStr) - 2, -1, -1):
+            currentNode.next = ListNode(int(sumStr[digitIndex]))
+            currentNode = currentNode.next
         
-        test = node
-  
-        for index in range(len(str(val))-2,-1,-1):
-
-            node.next = ListNode(int(str(val)[index]))
-            
-            node=node.next
-        
-        return test
+        return resultHead
