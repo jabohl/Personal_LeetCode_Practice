@@ -29,11 +29,11 @@ public:
         if (!root) return 0;
         
         // Recursively get max depth of left and right subtrees
-        int leftDepth = maxDepth(root->left);
-        int rightDepth = maxDepth(root->right);
+        int leftSubtreeDepth = maxDepth(root->left);
+        int rightSubtreeDepth = maxDepth(root->right);
         
         // Return 1 + max of both subtrees
-        return 1 + max(leftDepth, rightDepth);
+        return 1 + max(leftSubtreeDepth, rightSubtreeDepth);
     }
 };
 

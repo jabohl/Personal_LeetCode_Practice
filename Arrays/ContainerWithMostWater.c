@@ -5,31 +5,31 @@ int maxArea(int* heightArray, int heightArraySize) {
     int maxContainerArea = 0;
 
 
-    int leftIndex = 0;
+    int leftPointerIndex = 0;
 
 
-    int rightIndex = heightArraySize - 1;
+    int rightPointerIndex = heightArraySize - 1;
 
 
-    while (rightIndex != leftIndex) {
-        int minHeight = heightArray[leftIndex] < heightArray[rightIndex] ? 
-                        heightArray[leftIndex] : 
-                        heightArray[rightIndex];
+    while (rightPointerIndex != leftPointerIndex) {
+        int minHeight = heightArray[leftPointerIndex] < heightArray[rightPointerIndex] ? 
+                        heightArray[leftPointerIndex] : 
+                        heightArray[rightPointerIndex];
 
 
-        int currentArea = (rightIndex - leftIndex) * minHeight;
+        int currentContainerArea = (rightPointerIndex - leftPointerIndex) * minHeight;
 
 
-        if (currentArea > maxContainerArea) {
-            maxContainerArea = currentArea;
+        if (currentContainerArea > maxContainerArea) {
+            maxContainerArea = currentContainerArea;
         }
 
 
-        if (heightArray[rightIndex] > heightArray[leftIndex]) {
-            leftIndex++;
+        if (heightArray[rightPointerIndex] > heightArray[leftPointerIndex]) {
+            leftPointerIndex++;
         } 
         else {
-            rightIndex--;
+            rightPointerIndex--;
         }
     }
 

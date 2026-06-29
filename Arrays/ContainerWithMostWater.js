@@ -2,26 +2,26 @@ var maxArea = function(heightArray) {
     let maxContainerArea = 0;
 
 
-    let leftIndex = 0;
+    let leftPointerIndex = 0;
 
 
-    let rightIndex = heightArray.length - 1;
+    let rightPointerIndex = heightArray.length - 1;
 
 
-    while (rightIndex !== leftIndex) {
-        const minHeight = Math.min(heightArray[leftIndex], heightArray[rightIndex]);
+    while (rightPointerIndex !== leftPointerIndex) {
+        const minHeight = Math.min(heightArray[leftPointerIndex], heightArray[rightPointerIndex]);
 
 
-        const currentArea = (rightIndex - leftIndex) * minHeight;
+        const currentContainerArea = (rightPointerIndex - leftPointerIndex) * minHeight;
 
 
-        maxContainerArea = Math.max(maxContainerArea, currentArea);
+        maxContainerArea = Math.max(maxContainerArea, currentContainerArea);
 
 
-        if (heightArray[rightIndex] > heightArray[leftIndex]) {
-            leftIndex++;
+        if (heightArray[rightPointerIndex] > heightArray[leftPointerIndex]) {
+            leftPointerIndex++;
         } else {
-            rightIndex--;
+            rightPointerIndex--;
         }
     }
 

@@ -32,33 +32,33 @@ class Solution:
         if not mat or not mat[0]:
             return mat
         
-        rows, cols = len(mat), len(mat[0])
-        queue = deque()
-        visited = [[False] * cols for _ in range(rows)]
+        totalRows, totalCols = len(mat), len(mat[0])
+        cellQueue = deque()
+        visitedCells = [[False] * totalCols for _ in range(totalRows)]
         
         # Initialize: add all 0 cells to the queue
-        for i in range(rows):
-            for j in range(cols):
-                if mat[i][j] == 0:
-                    queue.append((i, j, 0))
-                    visited[i][j] = True
+        for rowIndex in range(totalRows):
+            for colIndex in range(totalCols):
+                if mat[rowIndex][colIndex] == 0:
+                    cellQueue.append((rowIndex, colIndex, 0))
+                    visitedCells[rowIndex][colIndex] = True
         
         # Directions: up, down, left, right
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        directionOffsets = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         
         # BFS from all 0 cells
-        while queue:
-            row, col, dist = queue.popleft()
-            mat[row][col] = dist
+        while cellQueue:
+            currentRow, currentCol, currentDistance = cellQueue.popleft()
+            mat[currentRow][currentCol] = currentDistance
             
             # Explore all 4 adjacent cells
-            for dr, dc in directions:
-                new_row, new_col = row + dr, col + dc
+            for rowOffset, colOffset in directionOffsets:
+                neighborRow, neighborCol = currentRow + rowOffset, currentCol + colOffset
                 
                 # Check boundaries and if not visited
-                if 0 <= new_row < rows and 0 <= new_col < cols and not visited[new_row][new_col]:
-                    visited[new_row][new_col] = True
-                    queue.append((new_row, new_col, dist + 1))
+                if 0 <= neighborRow < totalRows and 0 <= neighborCol < totalCols and not visitedCells[neighborRow][neighborCol]:
+                    visitedCells[neighborRow][neighborCol] = True
+                    cellQueue.append((neighborRow, neighborCol, currentDistance + 1))
         
         return mat
 
@@ -93,12 +93,3 @@ if __name__ == "__main__":
     print()
     
     # Test case 3
-    mat3 = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
-    result3 = solution.updateMatrix(mat3)
-    print("Test 3:")
-    for row in result3:
-        print(row)
-    # Expected:
-    # [2, 1, 2]
-    # [1, 0, 1]
-    # [2, 1, 2]

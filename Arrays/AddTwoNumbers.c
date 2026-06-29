@@ -2,34 +2,34 @@
 
 
 struct ListNode* addTwoNumbers(struct ListNode* firstNumberList, struct ListNode* secondNumberList) {
-    int carry = 0;
+    int carryValue = 0;
 
 
-    struct ListNode dummyHead;
-    dummyHead.val = 0;
-    dummyHead.next = NULL;
+    struct ListNode dummyHeadNode;
+    dummyHeadNode.val = 0;
+    dummyHeadNode.next = NULL;
 
 
-    struct ListNode *currentTail = &dummyHead;
+    struct ListNode *currentTailNode = &dummyHeadNode;
 
 
-    while (firstNumberList != NULL || secondNumberList != NULL || carry != 0) {
-        int digitSum = carry;
+    while (firstNumberList != NULL || secondNumberList != NULL || carryValue != 0) {
+        int currentDigitSum = carryValue;
 
 
         if (firstNumberList != NULL) {
-            digitSum += firstNumberList->val;
+            currentDigitSum += firstNumberList->val;
             firstNumberList = firstNumberList->next;
         }
 
 
         if (secondNumberList != NULL) {
-            digitSum += secondNumberList->val;
+            currentDigitSum += secondNumberList->val;
             secondNumberList = secondNumberList->next;
         }
 
 
-        carry = digitSum / 10;
+        carryValue = currentDigitSum / 10;
 
 
         struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
@@ -40,16 +40,16 @@ struct ListNode* addTwoNumbers(struct ListNode* firstNumberList, struct ListNode
         }
 
 
-        newNode->val = digitSum % 10;
+        newNode->val = currentDigitSum % 10;
         newNode->next = NULL;
 
 
-        currentTail->next = newNode;
+        currentTailNode->next = newNode;
 
 
-        currentTail = newNode;
+        currentTailNode = newNode;
     }
 
 
-    return dummyHead.next;
+    return dummyHeadNode.next;
 }

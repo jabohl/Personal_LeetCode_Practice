@@ -18,35 +18,35 @@ using namespace std;
 
 class Solution {
 private:
-    void dfs(vector<vector<char>>& grid, int row, int col, int rows, int cols) {
+    void dfs(vector<vector<char>>& grid, int currentRow, int currentCol, int totalRows, int totalCols) {
         // Base cases: out of bounds or water
-        if (row < 0 || row >= rows || col < 0 || col >= cols || grid[row][col] == '0') {
+        if (currentRow < 0 || currentRow >= totalRows || currentCol < 0 || currentCol >= totalCols || grid[currentRow][currentCol] == '0') {
             return;
         }
         
         // Mark current cell as visited
-        grid[row][col] = '0';
+        grid[currentRow][currentCol] = '0';
         
         // Explore all 4 directions (up, down, left, right)
-        dfs(grid, row - 1, col, rows, cols);  // up
-        dfs(grid, row + 1, col, rows, cols);  // down
-        dfs(grid, row, col - 1, rows, cols);  // left
-        dfs(grid, row, col + 1, rows, cols);  // right
+        dfs(grid, currentRow - 1, currentCol, totalRows, totalCols);  // up
+        dfs(grid, currentRow + 1, currentCol, totalRows, totalCols);  // down
+        dfs(grid, currentRow, currentCol - 1, totalRows, totalCols);  // left
+        dfs(grid, currentRow, currentCol + 1, totalRows, totalCols);  // right
     }
 
 public:
     int numIslands(vector<vector<char>>& grid) {
         if (grid.empty()) return 0;
         
-        int rows = grid.size();
-        int cols = grid[0].size();
+        int totalRows = grid.size();
+        int totalCols = grid[0].size();
         int islandCount = 0;
         
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < totalRows; i++) {
+            for (int j = 0; j < totalCols; j++) {
                 if (grid[i][j] == '1') {
                     islandCount++;
-                    dfs(grid, i, j, rows, cols);
+                    dfs(grid, i, j, totalRows, totalCols);
                 }
             }
         }

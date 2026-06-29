@@ -22,18 +22,18 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> map; // value -> index
+        unordered_map<int, int> valueToIndexMap; // value -> index
         
-        for (int i = 0; i < nums.size(); i++) {
-            int complement = target - nums[i];
+        for (int currentIndex = 0; currentIndex < nums.size(); currentIndex++) {
+            int complementValue = target - nums[currentIndex];
             
             // Check if complement exists in map
-            if (map.find(complement) != map.end()) {
-                return {map[complement], i};
+            if (valueToIndexMap.find(complementValue) != valueToIndexMap.end()) {
+                return {valueToIndexMap[complementValue], currentIndex};
             }
             
             // Store current number and its index
-            map[nums[i]] = i;
+            valueToIndexMap[nums[currentIndex]] = currentIndex;
         }
         
         return {}; // No solution found

@@ -30,14 +30,14 @@
  * Calculate the nth Fibonacci number using recursion.
  *
  * Args:
- *     position: The position in the Fibonacci sequence (0-indexed)
+ *     sequencePosition: The position in the Fibonacci sequence (0-indexed)
  *
  * Returns:
  *     The Fibonacci number at the given position
  */
-int fib(int position) {
-    if (position < 2) {
-        return position;
+int fib(int sequencePosition) {
+    if (sequencePosition < 2) {
+        return sequencePosition;
     }
-    return fib(position - 1) + fib(position - 2);
+    return fib(sequencePosition - 1) + fib(sequencePosition - 2);
 }
