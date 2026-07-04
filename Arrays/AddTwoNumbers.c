@@ -1,35 +1,35 @@
 #include <stdlib.h>
 
 
-struct ListNode* addTwoNumbers(struct ListNode* firstNumberList, struct ListNode* secondNumberList) {
-    int carryValue = 0;
+struct ListNode* addTwoNumbers(struct ListNode* firstOfOurNumberLists, struct ListNode* secondOfOurNumberLists) {
+    int carryValueForNeededCarriesOfSumsOfListValues = 0;
 
 
-    struct ListNode dummyHeadNode;
-    dummyHeadNode.val = 0;
-    dummyHeadNode.next = NULL;
+    struct ListNode dummyHeadNodeForKeepingTrackOfHeadNode;
+    dummyHeadNodeForKeepingTrackOfHeadNode.val = 0;
+    dummyHeadNodeForKeepingTrackOfHeadNode.next = NULL;
 
 
-    struct ListNode *currentTailNode = &dummyHeadNode;
+    struct ListNode *currentTailNode = &dummyHeadNodeForKeepingTrackOfHeadNode;
 
 
-    while (firstNumberList != NULL || secondNumberList != NULL || carryValue != 0) {
-        int currentDigitSum = carryValue;
+    while (firstOfOurNumberLists != NULL || secondOfOurNumberLists != NULL || carryValueForNeededPositionsInList != 0) {
+        int currentDigitSumOfOurSurrentListValueBeingSummed = carryValueForNeededCarriesOfSumsOfListValues;
 
 
-        if (firstNumberList != NULL) {
-            currentDigitSum += firstNumberList->val;
-            firstNumberList = firstNumberList->next;
+        if (firstOfOurNumberLists != NULL) {
+            currentDigitSumOfOurSurrentListValueBeingSummed += firstOfOurNumberLists->val;
+            firstOfOurNumberLists = firstOfOurNumberLists->next;
         }
 
 
-        if (secondNumberList != NULL) {
-            currentDigitSum += secondNumberList->val;
-            secondNumberList = secondNumberList->next;
+        if (secondOfOurNumberLists != NULL) {
+            currentDigitSumOfOurSurrentListValueBeingSummed += secondOfOurNumberLists->val;
+            secondOfOurNumberLists = secondOfOurNumberLists->next;
         }
 
 
-        carryValue = currentDigitSum / 10;
+        carryValueForNeededCarriesOfSumsOfListValues = currentDigitSumOfOurSurrentListValueBeingSummed / 10;
 
 
         struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
@@ -40,7 +40,7 @@ struct ListNode* addTwoNumbers(struct ListNode* firstNumberList, struct ListNode
         }
 
 
-        newNode->val = currentDigitSum % 10;
+        newNode->val = currentDigitSumOfOurSurrentListValueBeingSummed % 10;
         newNode->next = NULL;
 
 
