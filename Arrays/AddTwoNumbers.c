@@ -13,12 +13,12 @@ struct ListNode* addTwoNumbers(struct ListNode* firstOfOurLists, struct ListNode
     struct ListNode *currentTailNode = &nodeToKeepOrigin;
 
 
-    while (firstOfOurLists != NULL || secondOfOurLists != NULL || carryValueForNeededPositionsInList != 0) {
+    while (firstOfOurLists != NULL || secondOfOurLists != NULL || carryForAddedValues != 0) {
         int sumOfNodeValues = carryForAddedValues;
 
 
         if (firstOfOurLists != NULL) {
-            currentDigitSumOfOurSurrentListValues += firstOfOurLists->val;
+            sumOfNodeValues += firstOfOurLists->val;
             firstOfOurLists = firstOfOurLists->next;
         }
 
