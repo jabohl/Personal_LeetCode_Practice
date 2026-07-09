@@ -7,26 +7,26 @@ public:
         int maxContainerArea = 0;
 
 
-        int leftIndex = 0;
+        int inwardMovingPointer = 0;
 
 
-        int rightIndex = heightArray.size() - 1;
+        int outwardMovingPointer = heightArray.size() - 1;
 
 
-        while (rightIndex != leftIndex) {
-            int minHeight = std::min(heightArray[leftIndex], heightArray[rightIndex]);
+        while (outwardMovingPointer != inwardMovingPointer) {
+            int minPointerYCoordinates = std::min(heightArray[inwardMovingPointer], heightArray[outwardMovingPointer]);
 
 
-            int currentArea = (rightIndex - leftIndex) * minHeight;
+            int currentContainerArea = (outwardMovingPointer - inwardMovingPointer) * minPointerYCoordinates;
 
 
-            maxContainerArea = std::max(maxContainerArea, currentArea);
+            maxContainerArea = std::max(maxContainerArea, currentContainerArea);
 
 
-            if (heightArray[rightIndex] > heightArray[leftIndex]) {
-                leftIndex++;
+            if (heightArray[outwardMovingPointer] > heightArray[inwardMovingPointer]) {
+                inwardMovingPointer++;
             } else {
-                rightIndex--;
+                outwardMovingPointer--;
             }
         }
 
