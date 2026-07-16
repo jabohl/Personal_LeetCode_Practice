@@ -5,8 +5,8 @@
 
 class SmallestInfiniteSet {
 private:
-    int nextSmallest;
-    std::set<int> addedBack;
+    int nextSmallestInSet;
+    std::set<int> ReaddedValueSet;
 
 public:
     SmallestInfiniteSet() {
@@ -15,14 +15,14 @@ public:
     
 
     int popSmallest() {
-        if (!addedBack.empty()) {
-            int smallest = *addedBack.begin();
+        if (!ReaddedValueSet.empty()) {
+            int smallestInSet = *ReaddedValueSet.begin();
 
 
-            addedBack.erase(addedBack.begin());
+            ReaddedValueSet.erase(ReaddedValueSet.begin());
 
 
-            return smallest;
+            return smallestInSet;
         }
 
 
@@ -30,9 +30,9 @@ public:
     }
     
 
-    void addBack(int num) {
-        if (num < nextSmallest) {
-            addedBack.insert(num);
+    void addBack(int ViableValue) {
+        if (ViableValue < nextSmallest) {
+            ReaddedValueSet.insert(ViableValue);
         }
     }
 };
