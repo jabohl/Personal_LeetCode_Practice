@@ -10,8 +10,6 @@
  * Input: n = 2
  * Output: 1
  *
- * Input: n = 3
- * Output: 2
  *
  * Input: n = 4
  * Output: 3
