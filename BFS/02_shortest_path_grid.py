@@ -5,10 +5,6 @@ URL: https://leetcode.com/problems/01-matrix/
 Description:
 Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
 The distance between two adjacent cells is 1.
-
-Example:
-    Input: mat = [[0,0,0],[0,1,0],[1,1,1]]
-    Output: [[0,0,0],[0,1,0],[1,2,1]]
 """
 
 from collections import deque
@@ -61,35 +57,3 @@ class Solution:
                     cellQueue.append((neighborRow, neighborCol, currentDistance + 1))
         
         return mat
-
-
-# Test cases
-if __name__ == "__main__":
-    solution = Solution()
-    
-    # Test case 1
-    mat1 = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
-    result1 = solution.updateMatrix(mat1)
-    print("Test 1:")
-    for row in result1:
-        print(row)
-    # Expected:
-    # [0, 0, 0]
-    # [0, 1, 0]
-    # [1, 2, 1]
-    
-    print()
-    
-    # Test case 2
-    mat2 = [[0, 0], [1, 1]]
-    result2 = solution.updateMatrix(mat2)
-    print("Test 2:")
-    for row in result2:
-        print(row)
-    # Expected:
-    # [0, 0]
-    # [1, 1]
-    
-    print()
-    
-    # Test case 3
